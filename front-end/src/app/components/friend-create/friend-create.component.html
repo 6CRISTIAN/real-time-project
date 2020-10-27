@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="legacy">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Género</mat-label>
+                <mat-select panelClass="select-blue" formControlName="gender">
+                    <mat-option>··· Ninguno ···</mat-option>
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Femenino</mat-option>
+                    <mat-option value="O">Otro</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
