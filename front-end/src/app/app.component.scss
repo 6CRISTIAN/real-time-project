@@ -1,3 +1,10 @@
 .mat-card {
     border-radius: 9px;
+    overflow-x: auto;
+}
+.mat-card.form {
+    min-height: 300px;
+}
+.mat-card.viewer {
+    min-height: 330px;
 }
