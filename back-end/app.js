@@ -10,8 +10,5 @@ app.use('/api/friends', require('./routes/friend'))
 
 app.listen(port, () => {
     console.log(`listening http://localhost:${port}`)
-
-    sequelize.sync()
-        .then(_ => { console.log('success connect!') })
-        .catch(err => { console.log('connect failure!', err) })
+    sequelize.sync().catch(_ => console.log('·········> connect failure'))
 })
