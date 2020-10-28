@@ -26,6 +26,22 @@ io.on('connection', (socket) => {
     })
 })
 
+const createSubscriber = require('pg-listen')
+
+const subscriber = createSubscriber({
+    connectionString: `postgresql://postgres:${database.password}@localhost/real-time`,
+})
+
+subscriber.notifications.on('updated', msg => {
+    const { my_friend_id, updated_values } = msg;
+    console.log('my_friend updated', { my_friend_id, updated_values });
+});
+
+(async () => {
+    await subscriber.connect()
+    await subscriber.listenTo('updated')
+})();
+
 http.listen(port, () => {
     console.log(`listening http://localhost:${port}`)
     // sequelize.sync().catch(_ => console.log('·········> connect failure'))

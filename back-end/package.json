@@ -19,6 +19,7 @@
     "nodemon": "^2.0.6",
     "pg": "^8.4.2",
     "pg-hstore": "^2.3.3",
+    "pg-listen": "^1.6.0",
     "sequelize": "^6.3.5",
     "socket.io": "^2.3.0"
   }
