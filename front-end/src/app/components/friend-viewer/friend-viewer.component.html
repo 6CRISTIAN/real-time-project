@@ -8,13 +8,15 @@
         </div>
     </mat-list-item>
     <mat-divider class="header-divider"></mat-divider>
-    <mat-list-item class="py-2">
-        <div class="row center-xs">
-            <div class="col-xs-3">Sebastián</div>
-            <div class="col-xs-3">Masculino</div>
-            <div class="col-xs-3">2020-10-27 00:43:45.731-03</div>
-            <div class="col-xs-3">2020-10-27 00:43:45.731-03</div>
-        </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
+    <ng-container *ngFor="let friend of (friendSv.friends$ | async)">
+        <mat-list-item class="py-2">
+            <div class="row center-xs">
+                <div class="col-xs-3">{{friend.name | titlecase}}</div>
+                <div class="col-xs-3">{{getGenderDisplay(friend.gender) | titlecase}}</div>
+                <div class="col-xs-3">{{friend.createdAt}}</div>
+                <div class="col-xs-3">{{friend.updatedAt}}</div>
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </ng-container>
 </mat-list>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FriendsService } from 'src/app/core/services/friends.service';
 
 @Component({
   selector: 'app-friend-viewer',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendViewerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public friendSv: FriendsService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  public getGenderDisplay(gender: string): string {
+    if (!gender) return
+    switch (gender) {
+      case 'M': return 'masculino'
+      case 'F': return 'femenino'
+      case 'O': return 'otro'
+    }
   }
-
 }

@@ -1,13 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-interface Friend {
-  id: number
-  name: string
-  gender: string
-  createdAt: Date
-  updatedAt: Date
-}
+import { Friend } from 'src/app/core/models/model';
 
 @Component({
   selector: 'app-friend-create',

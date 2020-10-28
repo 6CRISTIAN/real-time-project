@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FriendCreateComponent } from './components/friend-create/friend-create.component';
 import { FriendEditComponent } from './components/friend-edit/friend-edit.component';
 import { FriendViewerComponent } from './components/friend-viewer/friend-viewer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FriendsService } from './core/services/friends.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,10 @@ import { FriendViewerComponent } from './components/friend-viewer/friend-viewer.
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [FriendsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
