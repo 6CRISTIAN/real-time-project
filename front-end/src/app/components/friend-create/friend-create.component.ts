@@ -46,7 +46,9 @@ export class FriendCreateComponent implements OnChanges {
       : this.friendSv.saveFriend(this.form.value)
 
     prom.then(_ => {
-      this.updateEvent.emit()
+      this.friend
+        ? this.updateEvent.emit()
+        : this.form.reset()
       this.openAlert()
     }).catch(_ => { this.openAlert(true) })
   }

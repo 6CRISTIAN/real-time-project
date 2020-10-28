@@ -4,7 +4,7 @@
             <mat-label>Amigo</mat-label>
             <mat-select panelClass="select-blue" [formControl]="friend">
                 <mat-option>··· Ninguno ···</mat-option>
-                <mat-option [value]="friend" *ngFor="let friend of (friendSv .friends$| async)">
+                <mat-option [value]="friend" *ngFor="let friend of friends">
                     {{friend.name}}
                 </mat-option>
             </mat-select>

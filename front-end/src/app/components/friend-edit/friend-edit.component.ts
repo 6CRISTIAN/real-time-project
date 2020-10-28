@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { Friend } from 'src/app/core/models/model';
 import { FriendsService } from 'src/app/core/services/friends.service';
 
 @Component({
@@ -11,14 +12,36 @@ import { FriendsService } from 'src/app/core/services/friends.service';
 export class FriendEditComponent implements OnInit, OnDestroy {
 
   public friend = new FormControl()
+
+  public friends: Friend[] = []
   public showForm: boolean = false
-  private subscription: Subscription
+  private subscriptions: Subscription[] = []
 
   constructor(public friendSv: FriendsService) { }
 
   ngOnInit(): void {
-    this.subscription = this.friend.valueChanges
-      .subscribe(res => { this.showForm = res ? true : false })
+    this.subscriptions.push(
+      this.friend.valueChanges
+        .subscribe(res => { this.showForm = res ? true : false })
+    )
+    this.friendsSubs()
+  }
+
+  private friendsSubs(): void {
+    this.subscriptions.push(
+      this.friendSv.friends$.subscribe(friends => {
+        if (this.friend.value)
+          this.catchEvent()
+        this.friends = friends
+      })
+    )
+  }
+
+  public catchEvent() {
+    const currentValue = this.friend.value.id
+    setTimeout(() => this.friend.setValue(
+      this.friends.find(fri => fri.id == currentValue)
+    ))
   }
 
   public reRender(): void {
@@ -27,8 +50,8 @@ export class FriendEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subscription)
-      this.subscription.unsubscribe()
+    for (let subs of this.subscriptions)
+      subs.unsubscribe()
   }
 
 }
