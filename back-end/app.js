@@ -29,12 +29,12 @@ io.on('connection', (socket) => {
 const createSubscriber = require('pg-listen')
 
 const subscriber = createSubscriber({
-    connectionString: `postgresql://postgres:${database.password}@localhost/real-time`,
+    connectionString: `postgres://postgres:${database.password}@localhost:5432/real-time`,
 })
 
 subscriber.notifications.on('updated', msg => {
-    const { my_friend_id, updated_values } = msg;
-    console.log('my_friend updated', { my_friend_id, updated_values });
+    const { my_friend_id, updated_values } = msg
+    console.log('my_friend updated', { my_friend_id, updated_values })
 });
 
 (async () => {
