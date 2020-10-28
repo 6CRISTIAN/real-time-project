@@ -19,6 +19,6 @@
         </div>
     </div>
 </ng-container>
-<ng-container *ngIf="friend.value">
-    <app-friend-create [friend]="friend.value"></app-friend-create>
+<ng-container *ngIf="showForm">
+    <app-friend-create [friend]="friend.value" (updateEvent)="reRender()"></app-friend-create>
 </ng-container>

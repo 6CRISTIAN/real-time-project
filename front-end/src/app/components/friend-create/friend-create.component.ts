@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Friend } from 'src/app/core/models/model';
@@ -12,6 +13,7 @@ import { FriendsService } from 'src/app/core/services/friends.service';
 export class FriendCreateComponent implements OnChanges {
 
   @Input() friend: Friend
+  @Output() updateEvent = new EventEmitter<void>()
 
   public form: FormGroup
 
@@ -38,11 +40,16 @@ export class FriendCreateComponent implements OnChanges {
 
   public submit(): void {
     if (this.form.invalid) return
-    this.friend
+
+    const prom = this.friend
       ? this.friendSv.updateFriend(this.form.value)
       : this.friendSv.saveFriend(this.form.value)
-        .then(_ => { this.openAlert() })
-        .catch(_ => { this.openAlert(true) })
+
+    prom.then(_ => {
+      this.updateEvent.emit()
+      this.openAlert()
+      this.fillForm()
+    }).catch(_ => { this.openAlert(true) })
   }
 
   private fillForm(): void {
