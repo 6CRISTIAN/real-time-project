@@ -27,7 +27,9 @@ io.on('connection', (socket) => {
     })
 })
 
-const subscriber = createSubscriber({ connectionString: `postgres://postgres:${db.password}@localhost:${db.port}/${db.database}` })
+const subscriber = createSubscriber({
+    connectionString: `postgres://postgres:${db.password}@localhost:${db.port}/${db.database}`
+})
 
 subscriber.notifications.on('updated', msg => {
     const { my_friend_id, updated_values } = msg
