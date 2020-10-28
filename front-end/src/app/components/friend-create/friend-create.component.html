@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+    <div class="row center-xs {{ friend ? 'mt-2' : 'mt-3'}} fadeIn">
+        <div class="col-xs-12">
+            <mat-form-field appearance="legacy">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div class="col-xs-12 mt-2">
+            <mat-form-field appearance="legacy">
+                <mat-label>Género</mat-label>
+                <mat-select panelClass="select-blue" formControlName="gender">
+                    <mat-option>··· Ninguno ···</mat-option>
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Femenino</mat-option>
+                    <mat-option value="O">Otro</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row center-xs {{ friend ? 'mt-3' : 'mt-4'}} fadeIn">
+        <div class="col-xs-12">
+            <button type="button" mat-raised-button color="accent" (click)="form.reset()">Limpiar formulario</button>
+            <button type="button" mat-raised-button color="primary" class="ml-2" [disabled]="form.invalid"
+                (click)="submit()">Crear</button>
+        </div>
+    </div>
+</form>
