@@ -1,5 +1,5 @@
 # real-time-project 👨‍💻
-Project made in PostgreSQL, NodeJs y Angular.
+Project made in PostgreSQL, NodeJs and Angular.
 
 
 ### Deploy NodeJs server on localhost 🚀
@@ -14,7 +14,7 @@ Project made in PostgreSQL, NodeJs y Angular.
 · 'npm run dev' (nodemon) or  'npm run start'
 ```
 
-### Deploy angular client on localhost 🚀
+### Deploy Angular client on localhost 🚀
 ```bash
 · If the previous server is deployed on any 
   different route to localhost, change de BASE variable on the 
