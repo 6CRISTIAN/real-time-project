@@ -7,6 +7,7 @@ module.exports = {
         password: '',
         database: '',
         host: 'localhost',
-        port: ''
+        port: '5432',
+        channel: 'updated'
     }
 }

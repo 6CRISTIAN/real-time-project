@@ -31,14 +31,14 @@ const subscriber = createSubscriber({
     connectionString: `postgres://postgres:${db.password}@localhost:${db.port}/${db.database}`
 })
 
-subscriber.notifications.on('updated', msg => {
+subscriber.notifications.on(db.channel, msg => {
     const { my_friend_id, updated_values } = msg
-    io.emit('updated', { my_friend_id, updated_values })
+    io.emit(db.channel, { my_friend_id, updated_values })
 });
 
 (async () => {
     await subscriber.connect()
-    await subscriber.listenTo('updated')
+    await subscriber.listenTo(db.channel)
 })();
 
 http.listen(port, () => {
