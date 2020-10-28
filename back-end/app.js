@@ -1,5 +1,5 @@
 const sequelize = require('./database/db')
-const { port, database } = require('./config')
+const { port, db } = require('./config')
 
 const express = require('express')
 const app = express()
@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
     })
 })
 
-const subscriber = createSubscriber({ connectionString: `postgres://postgres:${database.password}@localhost:5432/${database.database}` })
+const subscriber = createSubscriber({ connectionString: `postgres://postgres:${db.password}@localhost:${db.port}/${db.database}` })
 
 subscriber.notifications.on('updated', msg => {
     const { my_friend_id, updated_values } = msg
