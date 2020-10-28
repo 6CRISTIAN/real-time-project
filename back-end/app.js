@@ -27,9 +27,7 @@ io.on('connection', (socket) => {
     })
 })
 
-const subscriber = createSubscriber({
-    connectionString: `postgresql://postgres:${database.password}@localhost:5432/postgres`,
-})
+const subscriber = createSubscriber({ connectionString: `postgres://postgres:${database.password}@localhost:5432/${database.database}` })
 
 subscriber.notifications.on('updated', msg => {
     const { my_friend_id, updated_values } = msg
@@ -43,5 +41,5 @@ subscriber.notifications.on('updated', msg => {
 
 http.listen(port, () => {
     console.log(`listening http://localhost:${port}`)
-    // sequelize.sync().catch(_ => console.log('·········> connect failure'))
+    sequelize.sync().catch(_ => console.log('·········> connect failure'))
 })
