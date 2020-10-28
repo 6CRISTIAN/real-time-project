@@ -31,6 +31,7 @@ const subscriber = createSubscriber({ connectionString: `postgres://postgres:${d
 
 subscriber.notifications.on('updated', msg => {
     const { my_friend_id, updated_values } = msg
+    io.emit('updated', { my_friend_id, updated_values })
     console.log('my_friend updated', { my_friend_id, updated_values })
 });
 
