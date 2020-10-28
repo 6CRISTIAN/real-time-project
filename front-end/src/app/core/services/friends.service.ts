@@ -3,11 +3,14 @@ import { BehaviorSubject, Observable } from 'rxjs'
 import { Friend } from '../models/model'
 import { HttpClient } from '@angular/common/http'
 import { friends } from 'src/app/utils/constants'
+import io from 'socket.io-client'
 
 @Injectable({
   providedIn: 'root'
 })
 export class FriendsService {
+
+  private socket: any
 
   private friends: Friend[] = []
   private _friends = new BehaviorSubject<Friend[]>(this.friends)
@@ -19,6 +22,12 @@ export class FriendsService {
         this.friends = friends
         this._friends.next(this.friends)
       })
+
+    this.socketSubs()
+  }
+
+  private socketSubs(): void {
+    this.socket = io('http://localhost:3000')
   }
 
   private getFriends = (): Observable<Friend[]> => this.http.get<Friend[]>(friends)
