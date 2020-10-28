@@ -19,3 +19,19 @@ body {
     display: flex;
     justify-content: center;
 }
+/* fade in animation */
+.fadeIn {
+    -webkit-animation-duration: 0.69s;
+    animation-duration: 0.69s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

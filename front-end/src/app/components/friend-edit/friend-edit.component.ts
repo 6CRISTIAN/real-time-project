@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FriendsService } from 'src/app/core/services/friends.service';
 
 @Component({
   selector: 'app-friend-edit',
@@ -10,7 +11,7 @@ export class FriendEditComponent implements OnInit {
 
   public friend = new FormControl()
 
-  constructor() { }
+  constructor(public friendSv: FriendsService) { }
 
   ngOnInit(): void { }
 
