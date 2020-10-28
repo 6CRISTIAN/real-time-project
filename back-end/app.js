@@ -5,8 +5,9 @@ const express = require('express')
 const app = express()
 
 const http = require('http').Server(app)
-var io = require('socket.io')(http)
+const io = require('socket.io')(http)
 
+const createSubscriber = require('pg-listen')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -25,8 +26,6 @@ io.on('connection', (socket) => {
         console.log('disconnected!')
     })
 })
-
-const createSubscriber = require('pg-listen')
 
 const subscriber = createSubscriber({
     connectionString: `postgres://postgres:${database.password}@localhost:5432/real-time`,
