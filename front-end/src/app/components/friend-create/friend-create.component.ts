@@ -48,7 +48,6 @@ export class FriendCreateComponent implements OnChanges {
     prom.then(_ => {
       this.updateEvent.emit()
       this.openAlert()
-      this.fillForm()
     }).catch(_ => { this.openAlert(true) })
   }
 

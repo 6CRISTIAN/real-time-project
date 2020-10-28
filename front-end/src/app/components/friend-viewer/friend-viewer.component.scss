@@ -1,8 +1,10 @@
 .list-header {
     font-weight: 510;
-}
-.header-divider {
-    border-top: solid 3px rgb(103, 58, 183);
+    position: sticky !important;
+    top: 0;
+    z-index: 99;
+    background-color: #fff;
+    border-bottom: solid 3px rgb(103, 58, 183);
 }
 .col-xs-3 {
     display: flex;

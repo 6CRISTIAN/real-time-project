@@ -23,13 +23,16 @@ export class FriendsService {
   public friends$ = this._friends.asObservable()
 
   constructor(private http: HttpClient) {
+    this.retrieveFriends()
+    this.socketSubs()
+  }
+
+  private retrieveFriends(): void {
     this.getFriends()
       .subscribe(friends => {
         this.friends = friends
         this._friends.next(this.friends)
       })
-
-    this.socketSubs()
   }
 
   private async socketSubs(): Promise<void> {
@@ -58,7 +61,10 @@ export class FriendsService {
     return new Promise((resolve, reject) => {
       this.http.post(friends, friend)
         .subscribe(
-          data => resolve(data),
+          data => {
+            resolve(data)
+            this.retrieveFriends()
+          },
           err => reject(err)
         )
     })
