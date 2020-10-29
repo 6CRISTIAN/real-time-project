@@ -86,8 +86,7 @@ export class FriendCreateComponent implements OnChanges {
       msg, 'OK', {
       duration: 3600,
       verticalPosition: 'bottom',
-      horizontalPosition: 'center',
-      panelClass: 'snackbar'
+      horizontalPosition: 'center'
     })
   }
 }

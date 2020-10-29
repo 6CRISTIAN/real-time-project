@@ -33,6 +33,7 @@ const subscriber = createSubscriber({
 
 subscriber.notifications.on(db.channel, msg => {
     const { my_friend_id, updated_values } = msg
+    console.log({ my_friend_id, updated_values })
     io.emit(db.channel, { my_friend_id, updated_values })
 });
 

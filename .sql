@@ -10,13 +10,6 @@ CREATE TABLE public.my_friends
 
 
 
-INSERT INTO public.my_friends(
-	name, gender, "createdAt", "updatedAt")
-	VALUES ('Sebastián', 'M', '2020-10-28 17:03:00.86-03', '2020-10-28 17:03:00.86-03');
-
-
-
-
 CREATE OR REPLACE FUNCTION notify_updated() RETURNS TRIGGER AS $$
 DECLARE
 	updated_values jsonb;

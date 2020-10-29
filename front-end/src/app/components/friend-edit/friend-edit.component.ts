@@ -39,9 +39,11 @@ export class FriendEditComponent implements OnInit, OnDestroy {
 
   public catchEvent() {
     const currentValue = this.friend.value.id
-    setTimeout(() => this.friend.setValue(
-      this.friends.find(fri => fri.id == currentValue)
-    ))
+    setTimeout(() => {
+      this.friend.setValue(
+        this.friends.find(fri => fri.id == currentValue))
+      this.reRender()
+    })
   }
 
   public reRender(): void {

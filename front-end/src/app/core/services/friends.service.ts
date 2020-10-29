@@ -37,7 +37,7 @@ export class FriendsService {
 
   private async socketSubs(): Promise<void> {
     this.socket = await io('http://localhost:3000')
-    this.socket.on('updated', friend => {
+    this.socket.on('updated', (friend: UpdateFriendEvent) => {
       this.updateFriends(friend)
     })
   }
